@@ -1,0 +1,31 @@
+<!-- manage_activity.html.erb -->
+<h2>Manage Plant Activity</h2>
+<%= render 'form_for_activity' %>
+
+<!-- Mostrar información actual de la planta -->
+<h3><%= @plant.name %></h3>
+<p>Planting Date: <%= @plant.planting_date %></p>
+<p>Last Watered: <%= @plant.last_watered %></p>
+<!-- Otras propiedades de la planta -->
+
+<!-- Formulario para editar la planta y registrar actividades -->
+<%= render 'form_for_activity' %>
+<!-- _form_for_activity.html.erb (parcial) -->
+<%= simple_form_for(@plant, url: plant_path(@plant), method: :put) do |f| %>
+  <!-- Campos para editar la planta -->
+  <%= f.input :name %>
+  <%= f.input :planting_date, as: :date_picker %>
+  <%= f.input :last_watered, as: :date_picker %>
+  <!-- Otras propiedades de la planta -->
+
+  <!-- Casillas de verificación para actividades -->
+  <div class="form-check">
+    <%= f.input :watered, as: :boolean, label: 'Watered' %>
+  </div>
+  <div class="form-check">
+    <%= f.input :fertilized, as: :boolean, label: 'Fertilized' %>
+  </div>
+
+  <!-- Botón para actualizar -->
+  <%= f.button :submit, "Update Plant Activity", class: "btn btn-flat" %>
+<% end %>

@@ -2,7 +2,11 @@
   <div class="container">
     <h1>My Garden Manager</h1>
     <p>Manage, Cultivate and Grow your Garden and your Experience</p>
-    <%= link_to "Discover", "#how", class: "btn btn-flat" %>
+    <%#= link_to "Discover", render "garden_card",garden: garden, class: "btn btn-flat" %>
+    <%= link_to garden_path(@garden), class: "btn btn-flat" do %>
+  Discover
+<% end %>
+
   </div>
 </div>
 
@@ -33,8 +37,10 @@
           </div>
         <% end %>
         <p class="text-center fs-24">Manage your daily activity</p>
+          <% @garden.plants.each do |plant| %>
+        <%= link_to manage_activity_plant_path(plant) %>
+        <% end %>
       </div>
-
     </div>
   </div>
   <div class="section">

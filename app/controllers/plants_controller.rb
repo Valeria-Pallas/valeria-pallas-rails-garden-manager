@@ -10,6 +10,19 @@ class PlantsController < ApplicationController
     end
   end
 
+  def manage_activity
+    @plant = Plant.find(params[:id])
+  end
+
+  def update
+    @plant = Plant.find(params[:id])
+    if @plant.update(plant_params)
+      redirect_to manage_activity_plant_path(@plant), notice: 'Plant activity updated successfully.'
+    else
+      render :manage_activity, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @plant = Plant.find(params[:id])
     @garden = @plant.garden

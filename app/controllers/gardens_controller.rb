@@ -1,6 +1,7 @@
 class GardensController < ApplicationController
   def index
     @gardens = Garden.all
+    @garden = Garden.first
   end
 
   def show
@@ -18,9 +19,13 @@ class GardensController < ApplicationController
     if @garden.save
       redirect_to garden_path(@garden)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
+
+
+  
   end
+  
 
   private
 

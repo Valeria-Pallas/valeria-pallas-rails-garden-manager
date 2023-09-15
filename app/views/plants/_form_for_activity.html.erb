@@ -1,0 +1,18 @@
+%= simple_form_for(@plant, url: plant_path(@plant), method: :put) do |f| %>
+  <!-- Campos para editar la planta -->
+  <%= f.input :name %>
+  <%= f.input :planting_date, as: :date_picker %>
+  <%= f.input :last_watered, as: :date_picker %>
+  <!-- Otras propiedades de la planta -->
+
+  <!-- Casillas de verificación para actividades -->
+  <div class="form-check">
+    <%= f.input :watered, as: :boolean, label: 'Watered' %>
+  </div>
+  <div class="form-check">
+    <%= f.input :fertilized, as: :boolean, label: 'Fertilized' %>
+  </div>
+
+  <!-- Botón para actualizar -->
+  <%= f.button :submit, "Update Plant Activity", class: "btn btn-flat" %>
+<% end %>
